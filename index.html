@@ -61,6 +61,7 @@
 <header>
   <h1>Option Pricing Visualizer</h1>
   <p>Interactive Black-Scholes model with dynamic sliders and Greeks visualization</p>
+  <script src="calculation.js" defer></script>
 </header>
 
 <main>
@@ -122,14 +123,22 @@
     document.getElementById('rate-value').innerText = rate;
     document.getElementById('volatility-value').innerText = volatility;
 
-    // Placeholder: Calculate Black-Scholes outputs and update results
-    document.getElementById('call-price').innerText = 'TBD';
-    document.getElementById('put-price').innerText = 'TBD';
-    document.getElementById('delta').innerText = 'TBD';
-    document.getElementById('gamma').innerText = 'TBD';
-    document.getElementById('theta').innerText = 'TBD';
-    document.getElementById('vega').innerText = 'TBD';
-    document.getElementById('rho').innerText = 'TBD';
+    // Calculate Black-Scholes outputs and update results
+    const callPrice = calculateCallPrice(stockPrice, strikePrice, time, rate, volatility);
+    const putPrice = calculatePutPrice(stockPrice, strikePrice, time, rate, volatility);
+    const delta = calculateDelta(stockPrice, strikePrice, time, rate, volatility);
+    // const gamma = calculateGamma(stockPrice, strikePrice, time, rate, volatility);
+    // const theta = calculateTheta(stockPrice, strikePrice, time, rate, volatility);
+    // const vega = calculateVega(stockPrice, strikePrice, time, rate, volatility);
+    // const rho = calculateRho(stockPrice, strikePrice, time, rate, volatility);
+
+    document.getElementById('call-price').innerText = callPrice.toFixed(2);
+    document.getElementById('put-price').innerText = putPrice.toFixed(2);
+    document.getElementById('delta').innerText = delta.toFixed(2);
+    document.getElementById('gamma').innerText = gamma.toFixed(2);
+    document.getElementById('theta').innerText = theta.toFixed(2);
+    document.getElementById('vega').innerText = vega.toFixed(2);
+    document.getElementById('rho').innerText = rho.toFixed(2);
   }
 </script>
 

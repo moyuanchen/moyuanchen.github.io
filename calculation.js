@@ -1,13 +1,31 @@
 // Black-Scholes Formula
-function blackScholes(S, K, T, r, sigma) {
+// const callPrice = calculateCallPrice(stockPrice, strikePrice, time, rate, volatility);
+// const putPrice = calculatePutPrice(stockPrice, strikePrice, time, rate, volatility);
+// const delta = calculateDelta(stockPrice, strikePrice, time, rate, volatility);
+// const gamma = calculateGamma(stockPrice, strikePrice, time, rate, volatility);
+// const theta = calculateTheta(stockPrice, strikePrice, time, rate, volatility);
+// const vega = calculateVega(stockPrice, strikePrice, time, rate, volatility);
+// const rho = calculateRho(stockPrice, strikePrice, time, rate, volatility);
+
+function calculateCallPrice(S, K, T, r, sigma) {
     const d1 = (Math.log(S / K) + (r + 0.5 * sigma ** 2) * T) / (sigma * Math.sqrt(T));
     const d2 = d1 - sigma * Math.sqrt(T);
-  
     const callPrice = S * normalCDF(d1) - K * Math.exp(-r * T) * normalCDF(d2);
+    return callPrice;
+}
+
+function calculatePutPrice(S, K, T, r, sigma) {
+    const d1 = (Math.log(S / K) + (r + 0.5 * sigma ** 2) * T) / (sigma * Math.sqrt(T));
+    const d2 = d1 - sigma * Math.sqrt(T);
     const putPrice = K * Math.exp(-r * T) * normalCDF(-d2) - S * normalCDF(-d1);
-  
-    return { callPrice, putPrice };
-  }
+    return putPrice;
+}
+
+function calculateDelta(S, K, T, r, sigma) {
+    const d1 = (Math.log(S / K) + (r + 0.5 * sigma ** 2) * T) / (sigma * Math.sqrt(T));
+    const delta = normalCDF(d1);
+    return delta;
+}
   
   // Approximation for CDF of the standard normal distribution
   function normalCDF(x) {
