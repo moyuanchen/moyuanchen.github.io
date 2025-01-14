@@ -31,7 +31,7 @@ const BlackScholesCalculator = () => {
     const gamma = Math.exp(-d1 * d1 / 2) / (S * sigma * Math.sqrt(T) * Math.sqrt(2 * Math.PI));
     const theta = -(S * sigma * Math.exp(-d1 * d1 / 2)) / (2 * Math.sqrt(T) * Math.sqrt(2 * Math.PI)) 
                  - r * K * Math.exp(-r * T) * normalCDF(d2);
-    const vega = S * Math.sqrt(T) * Math.exp(-d1 * d1 / 2) / Math.sqrt(2 * Math.PI);
+    const vega = S * Math.sqrt(T) * Math.exp(-d1 * d1 / 2) / Math.sqrt(2 * Math.PI) / 100;
     const rho = K * T * Math.exp(-r * T) * normalCDF(d2);
 
     return { price: call, delta, gamma, theta, vega, rho };
